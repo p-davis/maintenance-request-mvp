@@ -5,4 +5,4 @@ Early Winforms project that I was asked to create in 2017 and my first attempt a
 
 [MVP Pattern](https://msdn.microsoft.com/en-us/library/ff649571.aspx "Model-View-Presenter")
 
-There are many aspects I would do differently now, such as some methods could be broken down further and test could be introduced, but I am using this experience in current projects and do ont intend to go back to this.
+There many aspects I would do differently now, such as some methods could be broken down further and test could be introduced, but I am using this experience in current projects and do ont intend to go back to this.
