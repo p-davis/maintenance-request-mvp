@@ -407,7 +407,7 @@ namespace MaintenanceRequestTracker.Presenters
                     }
                     else if (this.CompareTables())
                     {
-                        // PROCAL up to date with database
+                        // software is up to date with database
                         Console.WriteLine("Up to date with database");
                         this.mainView.ChangeDgv.DataSource = null;
                     }
@@ -433,7 +433,7 @@ namespace MaintenanceRequestTracker.Presenters
             this.mainView.MainTabControl.SelectedTab = this.mainView.ChangeTab;
             var currentRowIndex = -1;
 
-            // idList holds request id numbers of all requests to be updated in PROCAL
+            // idList holds request id numbers of all requests to be updated in maintenance software
             var changeIdList = new List<int>();
             var addIdList = new List<int>();
 
@@ -444,7 +444,7 @@ namespace MaintenanceRequestTracker.Presenters
             // copy tblMaintenanceRequest table to Data Table
             var dt = this.mainView.MaintenanceRequestTableAdapter.GetData().CopyToDataTable();
 
-            // begin checking for differences between the database table and the PROCAL Excel table
+            // begin checking for differences between the database table and the Excel table
             for (int i = 0; i < this.excelReader.ExcelDt.Rows.Count; i++)
             {
                 // bool to make sure that row id is only added to idList once, even if multiple column values are different to sql table
@@ -632,7 +632,7 @@ namespace MaintenanceRequestTracker.Presenters
 
         private void AddColorToChangeDgv(List<int> rowIndexList, List<int> columnIndexList)
         {
-            // finally use index lists to apply colors to cells that need to be updated on PROCAL
+            // finally use index lists to apply colors to cells that need to be updated in maintenance software
             for (int i = 0; i < rowIndexList.Count; i++)
             {
                 this.mainView.ChangeDgv.Rows[rowIndexList[i]].Cells[columnIndexList[i]].Style.BackColor = Color.LightGreen;
@@ -641,7 +641,7 @@ namespace MaintenanceRequestTracker.Presenters
             // calculate number of distinct rows with changes - used to color new rows
             var distinctRow = (from x in rowIndexList select x).Distinct().Count();
 
-            // color new maintenance requests that are present in tblMaintenenaceRequests, but not in PROCAL
+            // color new maintenance requests that are present in tblMaintenenaceRequests, but not in maintenance software
             for (int i = distinctRow; i < this.mainView.ChangeDgv.RowCount; i++)
             {
                 this.mainView.ChangeDgv.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;

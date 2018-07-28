@@ -111,7 +111,7 @@ namespace MaintenanceRequestTracker
         {
             using (var ofd = new OpenFileDialog())
             {
-                ofd.Title = "Select ProCal Excel file";
+                ofd.Title = "Select Excel file";
                 ofd.InitialDirectory = @"H:\";
                 DialogResult result = ofd.ShowDialog();
 
@@ -219,12 +219,6 @@ namespace MaintenanceRequestTracker
 
         private void InsertDataTable()
         {
-            ////string commandText = "INSERT INTO MaintenanceRequest " +
-            ////    "(request_id, item_type, item_id, maintenance_type, status, description," + 
-            ////    "date_requested, date_required, entered_by, last_modified, modified_by, comments)" +
-            ////    "VALUES (@request_id, @item_type, @item_id, @maintenance_type, @status, @description," +
-            ////    "@date_requested, @date_required, @entered_by, @last_modified, @modified_by, @comments)";
-
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MaintenanceRequest"].ConnectionString))
             using (SqlBulkCopy sbc = new SqlBulkCopy(conn))
             {
@@ -251,7 +245,7 @@ namespace MaintenanceRequestTracker
 
                     // sbc.ColumnMappings.Add("Comments", "comments");
 
-                    // Finally write to server
+                    // write to server
                     sbc.WriteToServer(this.ExcelDt);
                 }
                 catch (Exception ex)
